@@ -1,7 +1,7 @@
 <?php
 class RecentStatsCommand {
 
-    public function execute($payload) {
+    public static function execute($payload) {
         if (isset($payload['last_login'])) {
             $result = array(
                 'kill' => 0,
@@ -63,13 +63,13 @@ class RecentStatsCommand {
                 $result['matches']['total'],
                 $result['kill'],
                 $result['death'],
-                $this->calculationRatio($result['kill'], $result['death']),
-                $this->calculationRatio($result['kill'], ($result['death'] + $result['env_death'])),
-                $this->calculationEfficient($result['kill'], $result['played_time']),
-                $this->calculationEfficient($result['death'], $result['played_time']),
-                $this->calculationEfficient($result['obj'], $result['played_time']),
-                $this->calculationPercent($result['matches']['win'], $result['matches']['lose']),
-                $this->calculationPercent($result['matches']['lose'], $result['matches']['win'])
+                self::calculationRatio($result['kill'], $result['death']),
+                self::calculationRatio($result['kill'], ($result['death'] + $result['env_death'])),
+                self::calculationEfficient($result['kill'], $result['played_time']),
+                self::calculationEfficient($result['death'], $result['played_time']),
+                self::calculationEfficient($result['obj'], $result['played_time']),
+                self::calculationPercent($result['matches']['win'], $result['matches']['lose']),
+                self::calculationPercent($result['matches']['lose'], $result['matches']['win'])
             );
             return $status;
         } else {
@@ -77,7 +77,7 @@ class RecentStatsCommand {
         }
     }
 
-    function calculationRatio($foo, $bar) {
+    private static function calculationRatio($foo, $bar) {
         if($foo != 0) {
             if($bar == 0) {
                 $bar = 1;
@@ -89,7 +89,7 @@ class RecentStatsCommand {
         }
     }
 
-    function calculationEfficient($foo, $time) {
+    private static function calculationEfficient($foo, $time) {
         if ($foo == 0) {
             return 0;
         } else {
@@ -97,7 +97,7 @@ class RecentStatsCommand {
         }
     }
 
-    function calculationPercent($foo , $bar) {
+    private static function calculationPercent($foo , $bar) {
         return round($foo / ($foo + $bar) * 100, 1);
     }
 }

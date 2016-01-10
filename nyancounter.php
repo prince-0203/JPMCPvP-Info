@@ -164,8 +164,7 @@ if(isset($obj['player']['Player']['last_login'])) {
     $obj['player']['Player']['last_login']['ja'] = date('Y年m月d日 H時i分s秒', $obj['player']['Player']['last_login']['sec']);
     $obj['player']['Player']['last_logout']['ja'] = date('Y年m月d日 H時i分s秒', $obj['player']['Player']['last_logout']['sec']);
 
-    $recentstats = new RecentStatsCommand();
-    $obj['player']['Player']['recentstats'] = $recentstats->execute($obj['player']['Player']);
+    $obj['player']['Player']['recentstats'] = RecentStatsCommand::execute($obj['player']['Player']);
 
     $dataTypeArray = explode('->', $dataType);
     foreach ($dataTypeArray as $value) {
