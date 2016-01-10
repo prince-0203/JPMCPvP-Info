@@ -37,7 +37,7 @@ $(function () {
             }
         })
         .fail(function() {
-            table.appendTo('<tr>データを取得できませんでした。<a href="about/#faq>よくある質問</a>をご覧ください。</tr>');
+            table.appendTo('<tr>データを取得できませんでした。');
         });
     
     //JPMCPvPのサーバー一覧を取得
@@ -72,7 +72,7 @@ $(function () {
                 $('#serverList').append(serverListPanel);
             });
         } else {
-            $('#serverList').append('<div class="panel panel-warning"><div class="panel-body">サーバー一覧の取得に失敗しました。</div></div>');
+            $('#serverList').append('<div class="panel panel-warning"><div class="panel-body">サーバー一覧の取得に失敗しました。<a href="about/#faq>よくある質問</a>をご覧ください。</tr></div></div>');
         }
     });
     
