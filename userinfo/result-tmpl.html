@@ -1,0 +1,254 @@
+<div id="result" class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <img src="https://avatar.minecraft.jp/{{:name}}/minecraft/t.png">
+            &nbsp;{{:name}}{{if banned}} <span class="label label-default label-punishment">Banned</span>{{/if}}
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">概要</a></li>
+                <li role="presentation"><a href="#teampvp" aria-controls="teampvp" role="tab" data-toggle="tab">チームPvP</a></li>
+                <li role="presentation"><a href="#match" aria-controls="match" role="tab" data-toggle="tab">試合履歴</a></li>
+                <li role="presentation"><a href="#kill" aria-controls="kill" role="tab" data-toggle="tab">キル履歴</a></li>
+                <li role="presentation"><a href="#death" aria-controls="death" role="tab" data-toggle="tab">デス履歴</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="overview">
+                    <table class="table table-bordered table-striped table-responsive">
+                        <tbody>
+                            <tr>
+                                <th>UUID</th>
+                                <td>{{:uuid}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-info btn-block" disabled="disabled">
+                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Nyan Counterは作成できません
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>最終ログイン(サーバー移動)</th>
+                                <td>{{:last_login}}</td>
+                                <td class="makeCounterColumn">
+                                    <button type="button" class="btn btn-info btn-block makeCounter" data-path="player->Player->last_login->ja">
+                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Nyan Counterを作成
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>最終ログアウト</th>
+                                <td>{{:last_logout}}</td>
+                                <td class="makeCounterColumn">
+                                    <button type="button" class="btn btn-info btn-block makeCounter" data-path="player->Player->last_logout->ja">
+                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Nyan Counterを作成
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>最終ログアウト時のサーバー</th>
+                                <td>{{:last_login_server}}</td>
+                                <td class="makeCounterColumn">
+                                    <button type="button" class="btn btn-info btn-block makeCounter" data-path="player->Player->last_login_server">
+                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Nyan Counterを作成
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>累計獲得Nyan数</th>
+                                <td>{{:total.nyan_accumulated}}</td>
+                                <td class="makeCounterColumn">
+                                    <button type="button" class="btn btn-info btn-block makeCounter" data-path="player->Player->total->nyan_accumulated">
+                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Nyan Counterを作成
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>RecentStats</th>
+                                <td>{{!--nl:recentstats--}}<img src="http://prince.webcrow.jp/JPMCPvP-Info/nyancounter.php?id={{:uuid}}&datatype=player->Player->recentstats&backcolor=ffffff&strcolor=000000&font=2&fontsize=16&margin=0" /></td>
+                                <td class="makeCounterColumn">
+                                    <button type="button" class="btn btn-info btn-block makeCounter" data-path="player->Player->recentstats">
+                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Nyan Counterを作成
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="teampvp">
+                    <table class="table table-bordered table-striped table-responsive">
+                        <tbody>
+                            <tr>
+                                <th>ゲーム参加回数</th>
+                                <td>{{:teampvp.play_count}}</td>
+                                <td class="makeCounterColumn">
+                                    <button type="button" class="btn btn-info btn-block makeCounter" data-path="player->Player->teampvp->play_count">
+                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Nyan Counterを作成
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>勝利回数</th>
+                                <td>{{:teampvp.win_count}}</td>
+                                <td class="makeCounterColumn">
+                                    <button type="button" class="btn btn-info btn-block makeCounter" data-path="player->Player->teampvp->win_count">
+                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Nyan Counterを作成
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>敗北回数</th>
+                                <td>{{:teampvp.lose_count}}</td>
+                                <td class="makeCounterColumn">
+                                    <button type="button" class="btn btn-info btn-block makeCounter" data-path="player->Player->teampvp->lose_count">
+                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Nyan Counterを作成
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>キル回数</th>
+                                <td>{{:teampvp.kill_count}}</td>
+                                <td class="makeCounterColumn">
+                                    <button type="button" class="btn btn-info btn-block makeCounter" data-path="player->Player->teampvp->kill_count">
+                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Nyan Counterを作成
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>デス回数</th>
+                                <td>{{:teampvp.deathall}}</td>
+                                <td class="makeCounterColumn">
+                                    <button type="button" class="btn btn-info btn-block makeCounter" data-path="player->Player->teampvp->death_count">
+                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Nyan Counterを作成
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>K/Dレート</th>
+                                <td>{{:teampvp.kd_ratio}}</td>
+                                <td class="makeCounterColumn">
+                                    <button type="button" class="btn btn-info btn-block makeCounter" data-path="player->Player->teampvp->kd_ratio">
+                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Nyan Counterを作成
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>K/Kレート</th>
+                                <td>{{:teampvp.kk_ratio}}</td>
+                                <td class="makeCounterColumn">
+                                    <button type="button" class="btn btn-info btn-block makeCounter" data-path="player->Player->teampvp->kk_ratio">
+                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Nyan Counterを作成
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>目標達成回数</th>
+                                <td>{{:teampvp.objective_completed}}</td>
+                                <td class="makeCounterColumn">
+                                    <button type="button" class="btn btn-info btn-block makeCounter" data-path="player->Player->teampvp->objective_completed">
+                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Nyan Counterを作成
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="match">
+                    <table class="table table-bordered table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>マップ</td>
+                                <td>ゲームモード</td>
+                                <td>結果</td>
+                                <td>開始時刻</td>
+                                <td>終了時刻</td>
+                                <td>キル数</td>
+                                <td>デス数</td>
+                                <td>K/Dレート</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{for matches}}
+                                <tr>
+                                    <td><a href="http://pvp.minecraft.jp/matches/{{:id}}" target="_brank">{{:id}}</a></td>
+                                    <td>{{:map}}</td>
+                                    <td>{{:gamemode}}</td>
+                                    <td>{{:result}}</td>
+                                    <td>{{:started}}</td>
+                                    <td>{{:finished}}</td>
+                                    <td>{{:kill_count}}</td>
+                                    <td>{{:death_count}}</td>
+                                    <td>{{:kd_ratio}}</td>
+                                </tr>
+                            {{/for}}
+                        </tbody>
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="kill">
+                    <table class="table table-bordered table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <td>犠牲者</td>
+                                <td>マップ</td>
+                                <td>座標</td>
+                                <td>日時</td>
+                                <td>試合</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{for kills}}
+                                <tr>
+                                    <td><img src="https://avatar.minecraft.jp/{{:victim}}/minecraft/t.png"> {{:victim}}</td>
+                                    <td>{{:map}}</td>
+                                    <td>X:{{:location.x}}, Y:{{:location.y}}, Z:{{:location.z}}</td>
+                                    <td>{{:time}}</td>
+                                    <td><a href="http://pvp.minecraft.jp/matches/{{:match_id}}" target="_brank">{{:match_id}}</a></td>
+                                </tr>
+                            {{/for}}
+                        </tbody>
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="death">
+                    <table class="table table-bordered table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <td>Killer</td>
+                                <td>マップ</td>
+                                <td>座標</td>
+                                <td>日時</td>
+                                <td>試合</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{for deaths}}
+                                <tr>
+                                    <td><img src="https://avatar.minecraft.jp/{{:killer}}/minecraft/t.png"> {{:killer}}</td>
+                                    <td>{{:map}}</td>
+                                    <td>X:{{:location.x}}, Y:{{:location.y}}, Z:{{:location.z}}</td>
+                                    <td>{{:time}}</td>
+                                    <td><a href="http://pvp.minecraft.jp/matches/{{:match_id}}" target="_brank">{{:match_id}}</a></td>
+                                </tr>
+                            {{/for}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <a href="{{:permalink_url}}" target="_blank" class="btn btn-default btn-block">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;プロフィールを見る
+        </a>
+        <div class="row">
+            <div class="col-sm-6">
+                <a data-href="https://twitter.com/intent/tweet?text={{:name}}さんのプロフィール&url={{:locationHref}}" class="btn btn-twitter btn-block" rel="nofollow" onclick="openWindow(this.dataset.href,500,300);return false;">
+                    <img src="userinfo/twitter.png">&nbsp;Tweet
+                </a>
+            </div>
+            <div class="col-sm-6">
+                <a data-href="https://www.facebook.com/sharer.php?u={{:name}}さんのプロフィール" class="btn btn-facebook btn-block" rel="nofollow" onclick="openWindow(this.dataset.href,500,300);return false;">
+                    <img src="userinfo/facebook.png">&nbsp;Shere
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

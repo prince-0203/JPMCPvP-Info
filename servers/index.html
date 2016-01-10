@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <base href="../">
+        <title>Servers - JPMCPvP Info by prince</title>
+        <link rel="shortcut icon" href="favicon.png" type="image/png">
+        <link rel="apple-touch-icon-precomposed" href="favicon.png">
+        <link rel="stylesheet" href="lib/umi/css/bootstrap.min.css">
+        <link rel="stylesheet" href="lib/common.css">
+        <link rel="stylesheet" href="servers/index.css">
+        <script src="lib/jquery-2.1.4.min.js"></script>
+		<script src="lib/jsrender.min.js"></script>
+        <script src="lib/umi/js/bootstrap.min.js"></script>
+        <script src="lib/js.cookie-2.0.4.min.js"></script>
+        <script src="lib/login-oauth.js"></script>
+        <script src="lib/login.js"></script>
+        <script src="lib/footerFixed.js" async></script>
+        <script src="lib/loadheader.js"></script>
+        <script src="servers/index.js"></script>
+    </head>
+    <body class="no-thank-yu">
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+									})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-68490094-1', 'auto');
+			ga('send', 'pageview');
+
+		</script>
+        <header></header>
+        <section class="container">
+            <div class="page-header">
+                <h1>Servers</h1>
+            </div>
+        </section>
+        <div class="container">
+            <div class="row">
+                <!--メインコンテンツ-->
+                <div class="col-md-8">
+                    <!--サーバーリスト-->
+                    <div class="row" id="serverList"></div>
+                </div>
+                <!--サイドバー-->
+                <div class="col-md-4">
+                    <!--JPMCPvP-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                Japan Minecraft PvP<small>(オンライン人数のAPIが動いてない?)</small>
+                            </div>
+                        </div>
+                        <div class="panel-body" id="online-player"></div>
+                    </div>
+                    <!--Mojangサーバー-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                Mojang Servers
+                            </div>
+                        </div>
+                        <table class="table table-bordered table-striped table-responsive">
+                            <tbody id="mojangServerStatusTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="moreInfoModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" role="document">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="moreInfoModalLabel">More Info...</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <tr><th>Server Name</th><td id="ServerName"></td></tr>
+                            <tr><th>Internal Server Name</th><td id="InternalName"></td></tr>
+                            <tr><th>Player Count</th><td id="PlayerCount"></td></tr>
+                            <tr><th>Max Player Count</th><td id="MaxPlayerCount"></td></tr>
+                            <tr><th>Icon</th><td id="icon"></td></tr>
+                            <tr><th>Current Map</th><td id="currentMap"></td></tr>
+                            <tr><th>Next Map</th><td id="nextMap"></td></tr>
+                            <tr><th>Order</th><td id="order"></td></tr>
+                            <tr><th>Server Version</th><td id="serverVersion"></td></tr>
+                            <tr><th>State</th><td id="state"></td></tr>
+                            <tr><th>Time</th><td id="time"></td></tr>
+                            <tr><th>UUID</th><td id="uuid"></td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer id="footer" class="small"></footer>
+    </body>
+</html>

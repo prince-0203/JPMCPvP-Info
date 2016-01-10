@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <base href="../">
+        <title>User Info - JPMCPvP Info by prince</title>
+        <link rel="shortcut icon" href="favicon.png" type="image/png">
+        <link rel="apple-touch-icon-precomposed" href="favicon.png">
+        <link rel="stylesheet" href="lib/umi/css/bootstrap.min.css">
+        <link rel="stylesheet" href="lib/colerpicker/bootstrap.colorpickersliders.min.css">
+        <link rel="stylesheet" href="lib/slider/bootstrap-slider.min.css">
+        <link rel="stylesheet" href="lib/common.css">
+        <link rel="stylesheet" href="userinfo/index.css">
+        <script src="lib/jquery-2.1.4.min.js"></script>
+        <script src="lib/jsrender.min.js"></script>
+        <script src="lib/umi/js/bootstrap.min.js"></script>
+        <script src="lib/colerpicker/tinycolor.js"></script>
+        <script src="lib/colerpicker/bootstrap.colorpickersliders.min.js"></script>
+        <script src="lib/slider/bootstrap-slider.min.js"></script>
+        <script src="lib/js.cookie-2.0.4.min.js"></script>
+        <script src="lib/login-oauth.js"></script>
+        <script src="lib/login.js"></script>
+        <script src="lib/footerFixed.js" async></script>
+        <script src="lib/loadheader.js"></script>
+        <script src="lib/urlparam.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/sprintf/1.0.3/sprintf.min.js"></script>
+        <script src="userinfo/resentstats.js"></script>
+        <script src="userinfo/index.js"></script>
+        <!--ユーザー情報表示 テンプレート-->
+		<script id="resultTmpl" type="text/x-jsrender" src="userinfo/result-tmpl.html"></script>
+  		<!--Counter作成モーダル テンプレート-->
+   		<script id="makeCounterModalTmpl" type="text/x-jsrender" src="userinfo/makecountermodal-tmpl.html"></script>
+   		<!--Counterモーダル テンプレート-->
+		<script id="counterModalTmpl" type="text/x-jsrender" src="userinfo/countermodal-tmpl.html"></script>
+    </head>
+    <body class="no-thank-yu">
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+									})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-68490094-1', 'auto');
+			ga('send', 'pageview');
+
+		</script>
+        <header></header>
+        <section class="container">
+            <div class="page-header">
+                <h1>User Info</h1>
+            </div>
+        </section>
+        <section class="container">
+            <form id="searchForm" class="form-horizontal">
+                <div class="form-group">
+                    <label for="MinecraftID" class="control-label col-md-2">MinecraftID</label>
+                    <div class="col-md-10">
+                        <input type="search" class="form-control" id="MinecraftID" placeholder="monocrafty" autofocus />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button id="search" class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i> 検索</button>
+                    </div>
+                </div>
+            </form>
+            <div id="result"></div>
+        </section>
+        <div class="modal fade" id="makeCounterModal" tabindex="-1" role="dialog" aria-labelledby="makeCounterModalLabel"></div>
+        <div class="modal fade" id="counterModal" tabindex="-1" role="dialog" aria-labelledby="counterModalLabel"></div>
+        <footer id="footer" class="small"></footer>
+    </body>
+</html>

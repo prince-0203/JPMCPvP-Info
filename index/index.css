@@ -1,0 +1,15 @@
+#topJumbotron {
+    text-shadow: 1px 1px 1px #FFF,
+        -1px 1px 1px #FFF,
+        1px -1px 1px #FFF,
+        -1px -1px 1px #FFF;
+    
+    background-image: url(../diamond.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+}
+
+.topJumbotronButton {
+    text-shadow: none;
+}

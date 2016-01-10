@@ -1,0 +1,52 @@
+body {
+    margin-top: 90px;
+    padding-top: 10px;
+}
+
+footer {
+    padding: 40px 0 0;
+    color: #ecf0f1;
+    background-color: #333333;
+}
+
+div.share {
+    display: inline;
+}
+
+div.share img {
+    border-radius: 10%;
+    height: 48px;
+    width: 48px;
+}
+
+footer .copyright {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/*.navbar-brand {
+    background: url("logo-white.png") no-repeat;
+    background-size: contain;
+    height: 59px;
+    width: 200px;
+}*/
+
+.btn-twitter {
+    margin-top: 5px;
+    background-color: #00aced;
+    color: #ffffff;
+}
+
+.btn-twitter:hover, .btn-twitter:visited {
+    color: #ffffff;
+}
+
+.btn-facebook {
+    margin-top: 5px;
+    background-color: #305097;
+    color: #ffffff
+}
+
+.btn-facebook:hover, .btn-facebook:visited {
+    color: #ffffff;
+}

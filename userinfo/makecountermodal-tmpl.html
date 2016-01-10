@@ -1,0 +1,37 @@
+<div class="modal-dialog" role="document">
+	<div class="modal-content" role="document">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="makeCounterModalLabel">Nyan Counterを作成</h4>
+		</div>
+		<div class="modal-body">
+			<div>
+				<div class="form-group">
+					<label for="minecraftID">UUID</label>
+					<input type="text" class="form-control" id="minecraftID" value="{{:id}}" readonly>
+					<label for="path">対象</label>
+					<input type="text" class="form-control" id="path" value="{{:path}}" readonly>
+					<label for="backColor">背景色</label>
+					<input type="text" class="form-control colorPick" id="backColor" value="000000" data-color-format="hex">
+					<label for="strColor">文字色</label>
+					<input type="text" class="form-control colorPick" id="strColor" value="FFFFFF" data-color-format="hex">
+					<label for="font">フォント</label>
+					<select class="form-control" id="font">
+						<option value="0">美咲ゴシック(misaki_gothic.ttf)</option>
+						<option value="1">IPA ゴシック(ipag.ttf)</option>
+						<option value="2">IPA Pゴシック(ipagp.ttf)</option>
+						<option value="3">IPA 明朝(ipam.ttf)</option>
+						<option value="4">IPA P明朝(ipamp.ttf)</option>
+						<option value="5">07 ラノベPOP(LightNovelPOP.ttf)</option>
+					</select>
+					<label for="fontSize">フォントサイズ</label><br>
+					<input type="text" class="slider" id="fontSize" data-slider-id="fontSizeSlider" data-slider-min="1" data-slider-step="1" data-slider-value="20" data-slider-max="100"><br>
+					<label for="margin">余白(px)</label><br>
+					<input type="text" class="slider" id="margin" data-slider-id="marginSlider" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="2" data-slider-enabled="false">
+					<label><input type="checkbox" id="marginauto" checked>自動調整</label>
+				</div>
+				<button id="makeCounterModalNext" class="btn btn-primary btn-block" type="button">次へ</button>
+			</div>
+		</div>
+	</div>
+</div>
