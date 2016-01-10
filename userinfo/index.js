@@ -122,7 +122,7 @@ $(function () {
                 $(window).resize();
             } else {
                 $('header')
-                    .after('<section class="container" style="display: none"><div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>指定されたユーザーの情報を取得できませんでした。<a href="about/#faq class="alert-link">よくある質問</a>をご覧ください。</div></section>')
+                    .after('<section class="container" style="display: none"><div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>指定されたユーザーの情報を取得できませんでした。<a href="about/#faq" class="alert-link">よくある質問</a>をご覧ください。</div></section>')
                     .next()
                     .show(500)
                     .find('button.close')

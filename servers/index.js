@@ -9,7 +9,7 @@ $(function () {
         if(data) {
             $('#online-player').text(data.count + '人のプレイヤーがオンラインです。');
         } else {
-            $('#online-player').html('オンライン人数を取得できませんでした。<a href="about/#faq>よくある質問</a>をご覧ください。');
+            $('#online-player').html('オンライン人数を取得できませんでした。<a href="about/#faq">よくある質問</a>をご覧ください。');
         }
     });
     
@@ -72,7 +72,7 @@ $(function () {
                 $('#serverList').append(serverListPanel);
             });
         } else {
-            $('#serverList').append('<div class="panel panel-warning"><div class="panel-body">サーバー一覧の取得に失敗しました。<a href="about/#faq>よくある質問</a>をご覧ください。</tr></div></div>');
+            $('#serverList').append('<div class="panel panel-warning"><div class="panel-body">サーバー一覧の取得に失敗しました。<a href="about/#faq">よくある質問</a>をご覧ください。</tr></div></div>');
         }
     });
     
