@@ -43,9 +43,7 @@ $(function () {
                         this.kd_ratio = Math.round((this.kill_count / this.deathall) * 1000) / 1000;
                     }
                 });
-
-                data.teampvp.deathall = data.teampvp.death_count + data.teampvp.envdeath_count;
-
+                
                 $.each(data.kills, function() {
                     this.time = dateToJapanese(new Date(this.time));
                 });
