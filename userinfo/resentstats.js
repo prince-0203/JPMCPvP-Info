@@ -20,73 +20,73 @@
 //
 
 var RecentStats = {
-	execute: function(data) {
-		if(typeof(data.last_login) !== 'string') {
-			// データが不正だった
-			return null;
-		} else {
-			var result = {
-				kill: 0,
-				death: 0,
-				env_death: 0,
-				matches: {
-					total: 0,
-					win: 0,
-					lose: 0,
-					draw: 0
-				},
-				obj: 0,
-				played_time: 0,
-				boundary: 0
-			};
+  execute: function(data) {
+    if(typeof(data.last_login) !== 'string') {
+      // データが不正だった
+      return null;
+    } else {
+      var result = {
+        kill: 0,
+        death: 0,
+        env_death: 0,
+        matches: {
+          total: 0,
+          win: 0,
+          lose: 0,
+          draw: 0
+        },
+        obj: 0,
+        played_time: 0,
+        boundary: 0
+      };
 
-			$.each(data.matches, function(i) {
-				if(this.gamemode !== 'paintball' && this.gamemode !== 'splatt' && this.gamemode !== 'blitz') {
-					// Kill and death
-					result.kill += this.kill_count;
-					result.death += this.death_count;
-					result.env_death += this.envdeath_count;
-					// Match Result
-					result.matches.total++;
-					result.matches[this.result]++;
-					// Match Time
-					var playTime = Date.parse(this.finished) - Date.parse(this.started);
-					console.log('Start: ' + this.started + '(' + Date.parse(this.started) + '), ' +
-						'Finished: ' + this.finished + '(' + Date.parse(this.finished) + '), ' + playTime + 's(' + playTime / 60 + 'm)');
-					if(playTime < 2000) {
-						result.played_time += playTime;
-					}/* else {
-						console.log('err(' + i + '): started ' + new Date(this.started).getTime() + ', finished: ' + new Date(this.finished).getTime());
-					}*/
+      $.each(data.matches, function(i) {
+        if(this.gamemode !== 'paintball' && this.gamemode !== 'splatt' && this.gamemode !== 'blitz') {
+          // Kill and death
+          result.kill += this.kill_count;
+          result.death += this.death_count;
+          result.env_death += this.envdeath_count;
+          // Match Result
+          result.matches.total++;
+          result.matches[this.result]++;
+          // Match Time
+          var playTime = Date.parse(this.finished) - Date.parse(this.started);
+          console.log('Start: ' + this.started + '(' + Date.parse(this.started) + '), ' +
+            'Finished: ' + this.finished + '(' + Date.parse(this.finished) + '), ' + playTime + 's(' + playTime / 60 + 'm)');
+          if(playTime < 2000) {
+            result.played_time += playTime;
+          }/* else {
+            console.log('err(' + i + '): started ' + new Date(this.started).getTime() + ', finished: ' + new Date(this.finished).getTime());
+          }*/
 
-					if(result.boundary === 0) {
-						result.boundary = Date.parse(this.started);
-					}
-				}
-			});
+          if(result.boundary === 0) {
+            result.boundary = Date.parse(this.started);
+          }
+        }
+      });
 
-			// objectives
-			$.each(data.objective.destroys, function() {
-				if(Date.parse(this.time) > result.boundary) {
-					result.obj++;
-				}
-			});
+      // objectives
+      $.each(data.objective.destroys, function() {
+        if(Date.parse(this.time) > result.boundary) {
+          result.obj++;
+        }
+      });
 
-			$.each(data.objective.core_leaks, function() {
-				if(Date.parse(this.time) > result.boundary) {
-					result.obj++;
-				}
-			});
+      $.each(data.objective.core_leaks, function() {
+        if(Date.parse(this.time) > result.boundary) {
+          result.obj++;
+        }
+      });
 
-			$.each(data.ctw.wool_places, function() {
-				if(Date.parse(this.time) > result.boundary) {
-					result.obj++;
-				}
-			});
+      $.each(data.ctw.wool_places, function() {
+        if(Date.parse(this.time) > result.boundary) {
+          result.obj++;
+        }
+      });
 
-			//console.log(result.played_time);
+      //console.log(result.played_time);
 
-			var status = sprintf("%s の直近%d試合の戦績統計\nK: %d D: %d\nK/K: %s K/D: %s\n%sKill/h %sDeath/h %sObj/h\n勝率: %s%% 敗率: %s%%",
+      var status = sprintf("%s の直近%d試合の戦績統計\nK: %d D: %d\nK/K: %s K/D: %s\n%sKill/h %sDeath/h %sObj/h\n勝率: %s%% 敗率: %s%%",
                 data.name,
                 result.matches.total,
                 result.kill,
@@ -101,14 +101,14 @@ var RecentStats = {
             );
 
             return status;
-		}
-	},
+    }
+  },
 
-	round: function(foo, bar) {
-		return Math.round(foo * Math.pow(10, bar)) / Math.pow(10, bar);
-	},
+  round: function(foo, bar) {
+    return Math.round(foo * Math.pow(10, bar)) / Math.pow(10, bar);
+  },
 
-	calculationRatio: function(foo, bar) {
+  calculationRatio: function(foo, bar) {
         if(foo !== 0) {
             if(bar === 0) {
                 bar = 1;
