@@ -1,17 +1,17 @@
 /*jshint jquery: true*/
 
 //
-// ResentStats for Javascript
+// ResentStats for Javascript(β)
 //  Author: prince-0203<https://github.com/prince-0203>
 //  Require: jQuery<https://jquery.com/>, sprintf.js<https://github.com/alexei/sprintf.js>
 //
 // ResentStats<https://gist.github.com/nanashell2055/489cdd33deb0fe39eaa1> をJavascriptに移植・一部改変、新APIに対応させたものです。
 // APIからのユーザーデータの取得処理は入れていません。適当に取得して引数に渡してください。
-// どうやらプレイ時間を正常に取得できていないようで、効率を正しく計算できていませんがご了承ください。
+// どうやらAPIから取得した試合開始時刻・終了時刻を正常にUnix時間に変換できていないようで、効率を正しく計算できていませんがご了承ください。
 //
 
 //
-// Class Recentstats
+// Recentstats
 //  string execute(object data)
 //   object data: 新APIから取得したユーザー情報のObject(取得する際、fieldにはtotal,matches,objective,ctwを必ず指定すること(それ以外を含んでいても構わない)。また、JSONをそのまま渡さないこと。)
 //   ResentStatsを計算し、結果を返します。エラーが発生した場合、nullを返します。
