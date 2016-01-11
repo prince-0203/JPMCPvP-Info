@@ -189,5 +189,3 @@ if(isset($obj['player']['Player']['last_login'])) {
 } else {
     readfile('phpdata/font/error.png');
 }
-
-?>
