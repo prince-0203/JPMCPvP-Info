@@ -28,32 +28,32 @@ class RecentStatsCommand {
                     $result['matches']['total']++;
                     $result['matches'][$match['result']]++;
                     // Match Time
-                    $playTime = $match['finished']['sec'] - $match['started']['sec'];
+                    $playTime = strtotime($match['finished']) - strtotime($match['started']);
                     if ($playTime < 2000) {
                         $result['played_time'] += $playTime;
                     }
 
                     if($result['boundary'] == 0) {
-                        $result['boundary'] = $match['started']['sec'];
+                        $result['boundary'] = strtotime($match['started']);
                     }
                 }
             }
 
             // objectives
             foreach ($payload['objective']['destroys'] as $destroy) {
-                if($destroy['time']['sec'] > $result['boundary']) {
+                if(strtotime($destroy['time']) > $result['boundary']) {
                     $result['obj']++;
                 }
             }
 
             foreach ($payload['objective']['core_leaks'] as $core) {
-                if($core['time']['sec'] > $result['boundary']) {
+                if(strtotime($core['time']) > $result['boundary']) {
                     $result['obj']++;
                 }
             }
 
             foreach ($payload['ctw']['wool_places'] as $wool) {
-                if ($wool['time']['sec'] > $result['boundary']) {
+                if (strtotime($wool['time']) > $result['boundary']) {
                     $result['obj']++;
                 }
             }

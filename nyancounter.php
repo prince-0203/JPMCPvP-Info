@@ -30,10 +30,11 @@ ini_set('display_errors', 0);
 ini_set("display_startup_errors", 0);
 
 // ログ出力
-if($_SERVER['SERVER_NAME'] !== 'localhost'){
+if($_SERVER['SERVER_NAME'] !== 'localhost') {
     include './phplib/log.php';
 }
 
+require_once './phplib/minecraftjp-php-sdk/src/MinecraftJP.php';
 require_once './phplib/recentstats.php';
 
 date_default_timezone_set('Asia/Tokyo');
@@ -144,53 +145,56 @@ if (isset($_GET['datatype']) && preg_match('/^[A-Za-z0-9_>[\]-]+$/', $_GET['data
 }
 
 //データ取得
-$cp = curl_init();
-curl_setopt($cp, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($cp, CURLOPT_FAILONERROR, true);
-curl_setopt($cp, CURLOPT_URL, 'http://api.minecraft.jp/pvp/' . $_GET['id'] . '.json');
-curl_setopt($cp, CURLOPT_TIMEOUT, 5);
-$JSONData = curl_exec($cp);
-if($JSONData === FALSE) {
-    http_response_code(500);
-    header('X-Debug-cURL-Error: ' . curl_error($cp));
-    curl_close($cp);
-    readfile('phpdata/font/error.png');
-    exit;
-}
-curl_close($cp);
+$minecraftjp = new MinecraftJP([
+    'clientId' => 'CLIENT_ID',
+    'clientSecret' => 'CLIENT_SECRET',
+]);
+$minecraftjp->requestClientCredentials();
+$res = $minecraftjp->request('GET', 'https://pvp-api.minecraft.jp/v1/players/' . $_GET['id'] . '?fields=teampvp,total,matches,objective,ctw');
 
-//解析・出力
-$obj = json_decode($JSONData, TRUE);
-if(isset($obj['player']['Player']['last_login'])) {
-    $obj['player']['Player']['last_login']['ja'] = date('Y年m月d日 H時i分s秒', $obj['player']['Player']['last_login']['sec']);
-    $obj['player']['Player']['last_logout']['ja'] = date('Y年m月d日 H時i分s秒', $obj['player']['Player']['last_logout']['sec']);
+if($res->isOk()) {
+    //解析・出力
+    $obj['player']['Player'] = json_decode($res->getBody(), TRUE);
+    if(isset($obj['player']['Player']['last_login'])) {
+        $last_login_ja = date('Y年m月d日 H時i分s秒', strtotime($obj['player']['Player']['last_login']));
+        unset($obj['player']['Player']['last_login']);
+        $obj['player']['Player']['last_login']['ja'] = $last_login_ja;
 
-    $obj['player']['Player']['recentstats'] = RecentStatsCommand::execute($obj['player']['Player']);
+        $last_logout_ja = date('Y年m月d日 H時i分s秒', strtotime($obj['player']['Player']['last_logout']));
+        unset($obj['player']['Player']['last_logout']);
+        $obj['player']['Player']['last_logout']['ja'] = $last_logout_ja;
 
-    $dataTypeArray = explode('->', $dataType);
-    foreach ($dataTypeArray as $value) {
-        if(isset($obj[$value])) {
-            $obj = $obj[$value];
+        $obj['player']['Player']['recentstats'] = RecentStatsCommand::execute($obj['player']['Player']);
+
+        $dataTypeArray = explode('->', $dataType);
+        foreach ($dataTypeArray as $value) {
+            if(isset($obj[$value])) {
+                $obj = $obj[$value];
+            } else {
+                $obj = NULL;
+                break;
+            }
+        }
+
+        if($obj === NULL) {
+            http_response_code(400);
+            header('X-Debug-Error: Requested data was not found.');
+            readfile('phpdata/font/error.png');
         } else {
-            $obj = NULL;
-            break;
+            if(is_float($obj)) {
+                $obj = round($obj, 2);
+            }
+            $img = textToImg($obj, $backColor, $strColor, $fontPath, $fontSize, $margin);
+            imagePng($img);
+            imageDestroy($img);
         }
-    }
-
-    if($obj === NULL) {
-        http_response_code(400);
-        header('X-Debug-Error: Requested data was not found.');
-        readfile('phpdata/font/error.png');
     } else {
-        if(is_float($obj)) {
-            $obj = round($obj, 2);
-        }
-        $img = textToImg($obj, $backColor, $strColor, $fontPath, $fontSize, $margin);
-        imagePng($img);
-        imageDestroy($img);
+        http_response_code(500);
+        header('X-Debug-Error: Recieved data was invalid.');
+        readfile('phpdata/font/error.png');
     }
 } else {
     http_response_code(500);
-    header('X-Debug-Error: Recieved data was invalid.');
+    header('X-Debug-Error: Could not recieve data.');
     readfile('phpdata/font/error.png');
 }
