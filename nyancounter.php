@@ -151,6 +151,7 @@ curl_setopt($cp, CURLOPT_URL, 'http://api.minecraft.jp/pvp/' . $_GET['id'] . '.j
 curl_setopt($cp, CURLOPT_TIMEOUT, 5);
 $JSONData = curl_exec($cp);
 if($JSONData === FALSE) {
+    http_response_code(500);
     header('X-Debug-cURL-Error: ' . curl_error($cp));
     curl_close($cp);
     readfile('phpdata/font/error.png');
@@ -177,6 +178,8 @@ if(isset($obj['player']['Player']['last_login'])) {
     }
 
     if($obj === NULL) {
+        http_response_code(400);
+        header('X-Debug-Error: Requested data was not found.');
         readfile('phpdata/font/error.png');
     } else {
         if(is_float($obj)) {
@@ -187,5 +190,7 @@ if(isset($obj['player']['Player']['last_login'])) {
         imageDestroy($img);
     }
 } else {
+    http_response_code(500);
+    header('X-Debug-Error: Recieved data was invalid.');
     readfile('phpdata/font/error.png');
 }
