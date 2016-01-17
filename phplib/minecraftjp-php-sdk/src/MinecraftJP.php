@@ -334,29 +334,6 @@ class MinecraftJP {
      * @return string
      */
     protected function sendRequest($method, $url, $data = array(), $headers = array()) {
-        /*$contextOptions = array(
-            'http' => array(
-                'method' => $method,
-                'user_agent' => 'MinecraftJP-PHP-SDK/' . self::VERSION,
-                'ignore_errors' => true,
-            ),
-        );
-
-        if ($method == 'POST' && is_array($data)) {
-            $formEncoded = http_build_query($data);
-            $headers['Content-Type'] = 'application/x-www-form-urlencoded';
-            $headers['Content-Length'] = strlen($formEncoded);
-            $contextOptions['http']['content'] = $formEncoded;
-        }
-
-        $contextOptions['http']['header'] = '';
-        foreach ($headers as $k => $v) {
-            $contextOptions['http']['header'] .= $k . ': ' . $v . "\r\n";
-        }
-        $context = stream_context_create($contextOptions);
-
-        $body = file_get_contents($url, false, $context);*/
-
         $headersArray = ['Expect:'];
         foreach ($headers as $k => $v) {
             $headersArray[] = $k . ': ' . $v . "\r\n";
